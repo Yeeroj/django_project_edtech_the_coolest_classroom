@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{%static 'tcc.css' %}">
+    <title>The Coolest Classroom</title>
+</head>
+<body>
+    <div class="container-fluid" style="background-image: url(https://i.pinimg.com/originals/0c/ea/6f/0cea6fabe4d9d5256e0d1b2474927732.jpg);background-size:cover;margin-bottom: 20px">
+        <div class="row">
+                <div class="container head">
+                <h3 class="top" style="float: left;color: chocolate">*FITR</h3>
+                {% if user.is_authenticated %}
+                    <a class="btn btn-success btn-lg" style="float: right" href="/logout" role="button">Logout</a>
+                {% else %}
+                    <a class="btn btn-success btn-lg" style="float: right" href="/login" role="button">Login</a>    
+                {% endif %}
+                </div>
+              <div class="container">
+                <div class="jumbotron" style="background:none">
+                <h1 class="display-4">The Coolest Classroom!</h1>
+                <p class="lead">Welcome to The Coolest Classroom! A platform where gaming is learning and learning is via gaming.</p>
+                <hr class="my-4">
+                <p>Explore the tonne's of games and questions and start learning in a fun way.</p>
+
+                <a class="btn btn-info btn-lg" href="#signup" role="button">Sign up</a>
+                </div>
+            <!-- /.container   -->
+            </div>
+        </div>
+    </div>
+        <div class="container" style="height: 50px">
+{% comment %} <!-------------------------------------------------------------------------------------------------------------------------------------------> {% endcomment %}
+        <div class="col-md-3">
+            <p style="font-size: 18px;">Top performers of the week:</p>
+        </div>
+        <div class="col-md-9">
+            <marquee behavior="scroll" width="100%" direction="left" height="25px" scrollamount="8" onmouseover="this.stop()" onmouseout="this.start()">
+                <div class="col-sm-2 box1">
+                    <div class="toshow">Ram</div>
+                </div>
+                <div class="col-sm-2 box1">
+                    <div class="toshow">Shyam</div>
+                </div>
+                <div class="col-sm-2 box1">
+                    <div class="toshow">Geeta</div>
+                </div>
+                <div class="col-sm-2 box1">
+                    <div class="toshow">Farhan</div>
+                </div>
+                <div class="col-sm-2 box1">
+                    <div class="toshow">Srinivas</div>
+                </div>
+            </marquee>
+        </div>
+        </div>
+    {% comment %} <!--------------------------------------------------------------------------------------------------------------------------------------> {% endcomment %}
+    <section class="container-fluid" style="background-color: #f4f4f4;padding-top: 20px; margin-top: -10px;">
+        <div class="container">
+        <div class="jumbotron col-md-6" style="background-color: #fff; border-radius: 10px; height: 270px;">
+                <h2>Let's get inside</h2>
+                <p style="color: darkgray;font-size: 18px">Available platforms</p>
+                <div class="links">
+                    <a class="btn btn-default btn-md"  href="https://meet.google.com/" role="button">Google Meet</a>
+                    <a class="btn btn-default btn-md"  href="https://signin.webex.com/join" role="button">Cisco Webex</a>
+                    <a class="btn btn-default btn-md"  href="https://zoom.us/join" role="button">Zoom</a>
+                    <a class="btn btn-default btn-md"  href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software" role="button">Microsoft Teams</a>
+                </div>
+        </div>
+        <div class="jumbotron col-md-6" style="background-color: #fff; border-radius: 10px;">
+                <h2>The Word Play!</h2>
+                <p style="color: darkgray;font-size:18px">Bored of attending the lectures? Let's try something new this time. What about a word guessing game?</p>
+<!--                <a class="btn btn-success btn-lg" href="#" role="button">Let's Play</a>-->
+                {% if user.is_authenticated %}
+                <a class="btn btn-success btn-lg" href="{% url 'home' %}" role="button">Let's Play</a>
+                {% else %}
+                <a class="btn btn-success btn-lg" href="{% url 'login_page' %}" role="button">Let's Play</a>
+                {% endif %}
+        </div>
+        <div class="jumbotron col-md-6" style="background-color: #fff; border-radius: 10px; height: 295px">
+                <h2>The Daily Quiz Show!</h2>
+                <p style="color:darkgray;font-size: 18px; margin-bottom: 39px">Want to get exciting rewards? Let's take up the Daily Quiz Challenge and add some points in the bucket.</p>
+                {% if user.is_authenticated %}
+                <a class="btn btn-success btn-lg" href="{% url 'home' %}" role="button">Let's Play</a>
+                {% else %}
+                <a class="btn btn-success btn-lg" href="{% url 'login_page' %}" role="button">Let's Play</a>
+                {% endif %}
+        </div>
+        <div class="jumbotron col-md-6" style="background-color: #fff; border-radius: 10px;">
+                <h2>Let's check the Leaderboard</h2>
+                <p style="color: darkgray;font-size: 18px;">A successful person knows where he stand and the desire to get to the top is what makes him successful. Let's have a look on the leaderboard!</p>
+                <a class="btn btn-info btn-lg" href="leaderboard" role="button">Show</a>
+        </div>
+        </div>
+    </section>
+    {% comment %} <!--------------------------------------------------------Sign Up---------------------------------------------------------------------> {% endcomment %}
+    <div class="container" style="background-color: white; border-radius: 10px;" id="signup">
+        <h2 style="text-align: center; color: darkorange">Be a part of The Coolest Classroom!</h2>
+        <div class="jumbotron" style="background-color:#f9ffcc;">
+        <form class="form-horizontal"  method="POST" action="signup">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="control-label col-sm-offset-1 col-sm-2" for="fname">First Name:</label>
+                <div class="col-sm-7">
+                <input class="form-control" id="fname" name="fname" placeholder="Enter First Name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-offset-1 col-sm-2" for="lname">Last Name:</label>
+                <div class="col-sm-7">
+                <input class="form-control" id="name" name="lname" placeholder="Enter Last Name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-offset-1 col-sm-2" for="std">Standard:</label>
+                <div class="col-sm-7">
+                    <select class="form-control" id="std" placeholder="Select Standard" name="standard" required>
+                        <option disabled selected>Select standard</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-offset-1 col-sm-2" for="email">Email:</label>
+                <div class="col-sm-7">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-offset-1 col-sm-2" for="pwd">Password:</label>
+                <div class="col-sm-7">
+                <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-offset-1 col-sm-2" for="pwd">Confirm Password:</label>
+                <div class="col-sm-7">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="text-align: center">
+                <button type="submit" class="btn btn-success">Sign Up</button>
+                </div>
+            </div>
+    </form>
+    </div>
+    </div>
+</body>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    {% comment %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        type="text/css"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{%static 'tcc.css' %}">
+    <title>The Coolest Classroom</title>
+</head>
+
+<body>
+    {% comment %}
+    <!---------------------------------Jumbotron-----------------------------------------------------> {% endcomment %}
+    <nav class="navbar navbar-inverse" >
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h3 style="color:crimson;margin-left:10px;margin-top:10px">FITR</h3>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="home">HOME</a></li>
+                    <li><a href="quiz">DAILY QUIZ</a></li>
+                    <li><a href="#">WORD PLAY</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="logout">LOGOUT</a></li>
+                    {% else %}
+                    <li><a href="login">LOGIN</a></li>
+                    {% endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="jumbotron">
+            <a class="btn btn-success btn-lg" href="{% url 'homepage' %}" role="button">Home</a><br><br>
+
+<form  method="get" action="questionsearch" class="form-inline">
+  <input type="hidden" id="problem1" name="problem" value="problem1" ><br><br>
+  <button class="btn btn-primary btn-lg btn-block" type="submit">Question 1</button>
+</form>
+            <br><br>
+<form  method="get" action="questionsearch" class="form-inline">
+  <input type="hidden" id="problem2" name="problem" value="problem2" ><br><br>
+  <button class="btn btn-primary btn-lg btn-block" type="submit">Question 2</button>
+</form>
+            <br><br>
+<form  method="get" action="questionsearch" class="form-inline">
+  <input type="hidden" id="problem3" name="problem" value="problem3" ><br><br>
+  <button class="btn btn-primary btn-lg btn-block" type="submit">Question 3</button>
+</form>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  </body>
+

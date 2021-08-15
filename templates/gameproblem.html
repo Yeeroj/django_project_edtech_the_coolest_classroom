@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    {% comment %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        type="text/css"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{%static 'tcc.css' %}">
+    <title>The Coolest Classroom</title>
+</head>
+
+<body>
+    {% comment %}
+    <!---------------------------------Jumbotron-----------------------------------------------------> {% endcomment %}
+    <nav class="navbar navbar-inverse" >
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h3 style="color:crimson;margin-left:10px;margin-top:10px">FITR</h3>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="home">HOME</a></li>
+                    <li><a href="quiz">DAILY QUIZ</a></li>
+                    <li><a href="#">WORD PLAY</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="logout">LOGOUT</a></li>
+                    {% else %}
+                    <li><a href="login">LOGIN</a></li>
+                    {% endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+  <div class="container">
+    <div class="jumbotron">
+        {% block includes %}
+<h2>
+{{desc}}
+  </h2>
+<br>
+<h1>
+{{display}}
+</h1>
+<br>
+<h3>Attempt Left</h3>
+      <h3>
+        {{tries}}
+        </h3>
+<br>
+<br>
+
+<form  method="get" action="search" class="form-inline">
+  <input class="form-control mr-sm-2" type="search" placeholder="Enter alphabet" name="search" id="search" aria-label="Search"><br>
+      <input type="hidden" id="display" name="display" value={{display}} >
+    <input type="hidden" id="ourword" name="ourword" value={{ourword}} >
+<input type="hidden" id="tries" name="tries" value={{tries}} >
+  <input type="hidden" id="desc" name="desc" value={{desc}} >
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+{% endblock includes%}
+
+
+    </div>
+</div>
+
+
+  </body>
+
+
+
+
+
+
+
+
+
+
+
+

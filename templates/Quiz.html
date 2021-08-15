@@ -1,0 +1,43 @@
+{% extends 'sub-base.html' %}
+    {% block heading %} The Daily Quiz Show!{% endblock heading %} The Daily Quiz Show!
+    {% block inner-body %}
+    <div class="container" style="margin-bottom:30px">
+        <form action="submit" method="POST" class="form-horizontal">
+            {% csrf_token %}
+            {% if que %}
+            {% for i in que %}
+            <h4>{{i.id}}. {{i.que}}</h4>
+            <div class="form-check" style="margin-left:20px;">
+                <input class="form-check-input" type="radio" name="{{i.id}}" value="1" id="q1">
+                <label class="form-check-label" for="q1" style="color:crimson">
+                    {{i.opt1}}
+                </label>
+            </div>
+            <div class="form-check" style="margin-left:20px;">
+                <input class="form-check-input" type="radio" name='{{i.id}}' value="2" id="q2">
+                <label class="form-check-label" for="q2" style="color:crimson">
+                    {{i.opt2}}
+                </label>
+            </div>
+            <div class="form-check" style="margin-left:20px;">
+                <input class="form-check-input" type="radio" name="{{i.id}}" value="3" id="q3">
+                <label class="form-check-label" for="q3" style="color:crimson">
+                    {{i.opt3}}
+                </label>
+            </div>
+            <div class="form-check" style="margin-left:20px;">
+                <input class="form-check-input" type="radio" name='{{i.id}}' value="4" id="q4">
+                <label class="form-check-label" for="q4" style="color:crimson">
+                    {{i.opt4}}
+                </label>
+            </div>
+            {% endfor %}
+            <div class="form-check">
+                <div class="col-sm-offset-5 col-sm-7">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+{% endblock inner-body %}
